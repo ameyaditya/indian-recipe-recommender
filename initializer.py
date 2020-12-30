@@ -1,22 +1,17 @@
 import numpy as np
-from sklearn.feature_extraction.text import CountVectorizer
 from database_operations import *
 
-def initialise_feature_vector():
-    ingredients = get_ingredient_details()
-    ingredient_name = [i[1] for i in ingredients]
-    vectorizer = CountVectorizer()
-    vectorizer.fit(ingredient_name)
+def get_priority_scores(x, item_name_id = 2, item_type_id = 1):
+    priority_0 = set([item[item_name_id] for item in x[-1] if item[item_type_id] == 0])
+    priority_1 = set([item[item_name_id] for item in x[-1] if item[item_type_id] == 1])
+    priority_2 = set([item[item_name_id] for item in x[-1] if item[item_type_id] == 2])
+    priority_3 = set([item[item_name_id] for item in x[-1] if item[item_type_id] == 3])
+    return [priority_0, priority_1, priority_2, priority_3]
+
+def initialise_food_details():
     food_details = get_food_details(ingredients=True)
-    feature_vector = []
-    feature_map_dict = {}
-    i = 0
-    for each_food in food_details:
-        vector = [i[2] for i in each_food[-1]]
-        v1 = vectorizer.transform(vector)
-        v1 = np.array(np.sum(v1, axis = 0))
-        v1 = v1.ravel()
-        feature_vector.append(v1)
-        feature_map_dict[i] = each_food[0]
-        i += 1
-    return vectorizer, feature_vector, feature_map_dict
+    for i in range(len(food_details)):
+        x = list(food_details[i])
+        x.append(get_priority_scores(x))
+        food_details[i] = x
+    return food_details

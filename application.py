@@ -3,9 +3,25 @@ import json
 from database_operations import *
 from initializer import *
 
-vectorizer, feature_vector, feature_map_dict = initialise_feature_vector()
+food_details = initialise_food_details()
 app = Flask(__name__)
 
+def get_top_matches(input_ingredients, top_n = 50):
+    for ingredient_name in input_ingredients:
+        input_ingredients_data = []
+        temp = get_ingredient_details(ingredient_name_data=ingredient_name)
+        if len(temp) > 0:
+            input_ingredients_data.append(temp[0])
+    priorities = get_priority_scores([input_ingredients_data], item_name_id=1, item_type_id=2)
+    result = []
+    for each_food in food_details:
+        priority_0_score = round(len(priorities[0].intersection(each_food[-1][0])) / (len(each_food[-1][0]) + 1), 4) * 1
+        priority_1_score = round(len(priorities[1].intersection(each_food[-1][1])) / (len(each_food[-1][0]) + 1), 4) * 2
+        priority_2_score = round(len(priorities[2].intersection(each_food[-1][2])) / (len(each_food[-1][0]) + 1), 4) * 3
+        priority_3_score = round(len(priorities[3].intersection(each_food[-1][3])) / (len(each_food[-1][0]) + 1), 4) * 4
+        total_score = priority_0_score + priority_1_score + priority_2_score + priority_3_score
+        result.append([total_score, each_food[0]])
+    return sorted(result, reverse = True, key = lambda x: x[0])[:top_n]
 
 @app.route('/')
 def index():
@@ -29,17 +45,10 @@ def update_recipe():
 def rank_recipes():
     data = request.form.get("data")
     data = data.split(",")
-    v2 = vectorizer.transform(data)
-    v2 = np.array(np.sum(v2, axis=0))
-    v2 = v2.ravel()
-    scores = []
-    for vector in feature_vector:
-        scores.append(np.linalg.norm(vector-v2))
-    res = sorted([(scores[i], i)
-                  for i in range(len(scores))], reverse=True)[:50]
+    res = get_top_matches(data)
     ret_data = []
     for i in res:
-        ret_data.append(get_food_details(food_id=feature_map_dict[i[1]])[0])
+        ret_data.append(get_food_details(food_id=i[1])[0])
     return json.dumps(ret_data)
 
 
@@ -68,5 +77,6 @@ def update_i_type():
     for i_id, i_type in data:
         update_ingredient_type(i_type, i_id)
     return 1
+
 if __name__ == "__main__":
     app.run(debug=True)
