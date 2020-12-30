@@ -21,6 +21,9 @@ def all_recipes():
 def recipe():
     return render_template('recipe.html')
 
+@app.route('/update_recipe')
+def update_recipe():
+    return render_template('mark_ingredients.html')
 
 @app.route('/rank_recipes', methods=['POST'])
 def rank_recipes():
@@ -53,6 +56,17 @@ def get_ingrs():
     data = [i[1] for i in data]
     return json.dumps(data)
 
+@app.route('/update_type', methods=['POST'])
+def get_type():
+    data = get_ingredient_details()
+    return json.dumps(data)
 
+@app.route('/update_i_type', methods=['POST'])
+def update_i_type():
+    data = request.form.get('data')
+    data = json.loads(data)
+    for i_id, i_type in data:
+        update_ingredient_type(i_type, i_id)
+    return 1
 if __name__ == "__main__":
     app.run(debug=True)
