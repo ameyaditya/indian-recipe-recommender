@@ -27,7 +27,6 @@ def get_top_matches(input_ingredients, top_n = 50):
 def index():
     return render_template('home.html')
 
-
 @app.route('/allrecipes')
 def all_recipes():
     return render_template('allrecipe.html')
@@ -45,11 +44,12 @@ def update_recipe():
 def rank_recipes():
     data = request.form.get("data")
     data = data.split(",")
-    res = get_top_matches(data)
+    res = get_top_matches(data) ##list of food ids
     ret_data = []
     for i in res:
         ret_data.append(get_food_details(food_id=i[1])[0])
     return json.dumps(ret_data)
+    ## [[foo_id, food_title, image, descri], [foo_id, food_title, image, descri], [foo_id, food_title, image, descri]]
 
 
 @app.route('/get_recipe', methods=['GET'])
@@ -61,7 +61,7 @@ def get_recipe():
 
 @app.route('/get_all_ingredients', methods=['GET'])
 def get_ingrs():
-    data = get_ingredient_details(ingredient_type=False)
+    data = get_ingredient_details(ingredient_type=False) #[[1, "TOMATO"], [2, "CARROT"]]
     data = [i[1] for i in data]
     return json.dumps(data)
 

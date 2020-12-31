@@ -1,0 +1,120 @@
+a = brinjal eggplant
+b = 1/2 cup brinjal eggplant cubed   
+    012345678
+1cip brinjal
+1.2 brinjal
+b.index(a) #8
+b[:8]
+
+
+a = "/imges/pa.neer.jpg"
+b = a.split(".") # ["/imges/pa", "neer", "jpg"]
+b[-1]
+uuid = aslchsacosabhcsac + "." + extension
+
+
+
+ingredients - id name status
+1 car 
+2 tomato
+food id title dec time pro
+1 pizza......
+food_imgredients - fi_id f_id i_id quntity
+
+get ingredients from DB html requests python(flask) flask gets from db and sends to html
+send to home.html
+
+prioritised result
+html will ask python data
+python will get data database
+python will process(RANKING)
+python sends to html
+
+
+load in dropdown
+
+1 1 1 1 cup
+2 1 2 1 cup
+
+
+
+
+INGREDIENTS 
+1 carrot  3
+2 tomato  3
+3 salt    0
+4 ketchup 2
+5 cinamom 1
+6 cloves  1
+7 Spinach 2
+8 sugar   2
+9 nuts	  1
+
+
+FOOD
+1 PIZZA [2, 4, 5, 6, 7]
+2 CARROT HALVA [1, 8, 9]
+
+[carrot, salt]
+STEP 1
+get ID of carrot # 1
+get ID of salt   # 3
+[1, 3]
+euclidan distance #decimal number OLD METHOD
+
+1 PIZZA [2, 4, 5, 6, 7] [{}, {5, 6}, {4,  7}, {2}]
+2 CARROT HALVA [1, 8, 9] [{}, {9}, {8}, {1}]
+3 BHEL PURI [1, 2, 3] [{3}, {}, {}, {1, 2}]
+
+INPUT [1,3] [{3}, {}, {}, {1}]
+
+CARROT HALVA > BHELPURI 
+priority_3_score = 
+len(priority_3['input'] intersection priority_3['food']) / len(priority_3['food'])
+CARROT HALVA intersection {1} len = 1, len p3_food = 1
+BHEL PURI intersection {1} len = 1, len p3_food = 2
+score_CARROT_HALVA = 1 / 1 = 1
+score_BHELPURI = 1 / 2 = 0.5
+
+priority_0_score = 
+len(priority_0['input'] intersection priority_0['food']) / len(priority_0['food'])
+score_CARROT_HALVA = 1 / 0  = 0
+score_BHELPURI = 1 / 1 = 1
+
+TOTAL_SCORE = p0 + p1 + p2 + p3
+total_SCORE_CARROT_HALVA = 1 + 0 = 1
+total_SCORE_BHELPURI = 0.5 + 1 = 1.5
+
+UPDATED TOTAL_SCORE = p0_score * 1 + p1_score * 2 + p2_score * 3 + p3_score * 4
+
+total_SCORE_CARROT_HALVA = 1 * 4 + 0 * 1= 4
+total_SCORE_BHELPURI = 0.5 * 4 + 1 * 1 = 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -19,6 +19,17 @@ def add_row(data):
 f = open("data.pickle", "rb")
 DATA = pickle.load(f)
 f.close()
-
+"""
+[
+{
+    "title": .....,
+    "description": ....,
+    "cook_time": .....
+    "procedure": ["kshcgkah alchcs"],
+    "ingredients": [(item, quantity), (item, quantity)],
+    "image_url": ........
+}, ..........
+]
+"""
 for each_row in DATA:
     add_row(each_row)
