@@ -12,9 +12,11 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&display=swap"
 		rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="{{ url_for('static', filename = 'src/tagcomplete.js') }}"></script>
-	<title>FOOD</title>
+	<title>Cuisine Culture</title>
 
 	<style>
 		body {
@@ -23,12 +25,9 @@
 			background-repeat: no-repeat;
 			font-family: 'Poppins', sans-serif;
 		}
-
-		.container {
-			width: 80%;
+		.container{
 			margin: 150px auto;
 		}
-
 		input {
 			margin: 0 auto;
 		}
@@ -62,20 +61,24 @@
 
 <header>
 	<nav class="navbar navbar-light bg-light">
-		<div class="m-auto">
-			<span class="navbar-brand mb-0 h1" style="font-size: 50px;">FOOD</span>
+		<div class="container-fluid">
+			<span class="navbar-brand h1" style="font-size: 50px;font-family: 'Pacifico', cursive;
+			">Cuisine Culture</span>
 		</div>
 	</nav>
 </header>
 
 <div class="container bg-light " style="padding: 15px;width: 500px;">
-	<h1 class="title text-center">FOOD</h1>
+	<h1 class="title text-center" style =  "font-family: 'Pacifico', cursive;
+	">Cuisine Culture</h1>
 
 	<div class="font-poppins">Enter the Ingredients</div>
+	<div>
 	<input type='text' class='tags_input' value="" />
 	<button type="submit" class="btn-dark"
-		style="width: 100%; margin-top: 15px; padding: 5px 5px 5px 10px;color: white; background-color: #2a2e33;" onclick="submit_ingredients()">Add
+		style="width: 100%; margin-top: 15px; padding: 10px 10px 10px 10px;color: white; background-color: #2a2e33;" onclick="submit_ingredients()">Add
 		Ingredients</button>
+	</div>
 </div>
 
 <script>
